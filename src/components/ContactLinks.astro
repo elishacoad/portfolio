@@ -1,0 +1,74 @@
+---
+interface Props {
+  variant?: 'footer' | 'inline';
+}
+
+const { variant = 'footer' } = Astro.props;
+
+const links = [
+  {
+    label: 'Email',
+    href: 'mailto:elisha@coad.net',
+    text: 'elisha@coad.net',
+    external: false
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/elishacoad/',
+    text: 'linkedin.com/in/elishacoad',
+    external: true
+  },
+  {
+    label: 'Medium',
+    href: 'https://medium.com/@elishacoad',
+    text: 'medium.com/@elishacoad',
+    external: true
+  }
+];
+
+const linkClass = variant === 'footer' ? 'contact-link mouse-hover-fx' : 'hyperlink mouse-hover-fx';
+---
+
+{variant === 'footer' ? (
+  <div>
+    {links.map(link => (
+      <a 
+        href={link.href} 
+        target={link.external ? '_blank' : undefined}
+        rel={link.external ? 'noopener noreferrer' : undefined}
+        class={linkClass}
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+) : (
+  <>
+    Email: <a 
+      href={links[0].href} 
+      class={linkClass}
+    >
+      {links[0].text}
+    </a>
+    <br><br>
+    LinkedIn: <a 
+      href={links[1].href} 
+      target="_blank"
+      rel="noopener noreferrer"
+      class={linkClass}
+    >
+      {links[1].text}
+    </a>
+    <br><br>
+    Medium: <a 
+      href={links[2].href} 
+      target="_blank"
+      rel="noopener noreferrer"
+      class={linkClass}
+    >
+      {links[2].text}
+    </a>
+    <br><br>
+  </>
+)}
+

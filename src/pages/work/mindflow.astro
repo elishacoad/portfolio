@@ -1,0 +1,106 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import TextSection from '../../components/TextSection.astro';
+import NameValuePair from '../../components/NameValuePair.astro';
+import ProjectImage from '../../components/ProjectImage.astro';
+import EmphasisContainer from '../../components/EmphasisContainer.astro';
+---
+
+<CaseStudyLayout
+  title="Mindflow | Elisha Coad's Portfolio"
+  description="Mindflow is a startup company that rewards learning with cryptocurrency. They hired me to build their brand and design their website. Over the course of a few months, I created a logo, brand guidelines, animated 3D illustrations, and a website landing page for the company."
+  projectTitle="Mindflow"
+  projectSubtitle="UX / UI / Branding"
+  overview="Mindflow is a startup company that rewards learning with cryptocurrency. They hired me to build their brand and design their website. Over the course of a few months, I created a logo, brand guidelines, animated 3D illustrations, and a website landing page for the company."
+  timeline="3 months, 2022"
+  role="Brand Designer, UX/UI Designer"
+  tools="Figma, Illustrator, Blender, Webflow, After Effects"
+>
+  <TextSection 
+    title="Initial Discovery" 
+    description="To jumpstart the project, I set up some meetings with the Mindflow team to better understand their goals and service. Additionally, I researched the cryptocurrency space and gathered materials both from the client and from outside sources to build a library of content from which to draw."
+  >
+    <ProjectImage src="/images/projects/mindflow/stylescapes.png" alt="Stylescapes" />
+    <NameValuePair 
+      name="Stylescapes" 
+      value="To help the client to understand what they wanted and to align our vision on the look and feel of the brand, I created three stylescapes. The first was my interpretation of what would work well for the goals they had, the second is a version which aligns closest to what the client was thinking, and the third was a more experimental take on the style direction. After reviewing them with the client, we decided to pursue the style of the first." 
+    />
+    <EmphasisContainer 
+      emphasis="Stylescapes are a carefully collected combination of images, textures, typography, and colors to communicate a certain look and feel of a brand, website, interior space, or any other design project." 
+      source="The Futur" 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="The Logo" 
+    description="Through a discovery meeting, I helped them narrow their keywords to clean, playful, and techy. With these in mind, I began the logo brainstorming process."
+  >
+    <ProjectImage src="/images/projects/mindflow/Logo-Sketches-1.png" alt="Logo sketches" />
+    <ProjectImage src="/images/projects/mindflow/Logo-Sketches-2.png" alt="Logo sketches" grouped={true} />
+    <ProjectImage src="/images/projects/mindflow/Final-Comparison.png" alt="Final logo comparison" grouped={true} />
+    <NameValuePair 
+      name="Logo Explorations" 
+      value="I researched logos in the cryptocurrency tech world and then started sketching. After several rounds of narrowing the options, we landed on the official Mindflow logo." 
+    />
+    <ProjectImage src="/images/projects/mindflow/Logo-Alone.png" alt="Official Mindflow Logo" />
+    <p class="caption">Official Mindflow Logo<br></p>
+  </TextSection>
+
+  <TextSection 
+    title="The 3D Illustration" 
+    description="As a way to establish the brand in their field and to add some character, we decided to use 3D illustration. I created a handful of designs that they could use in their marketing and website."
+  >
+    <ProjectImage src="/images/projects/mindflow/Illustration-Sketches.png" alt="Initial sketches" caption="Initial Sketches" />
+    <ProjectImage src="/images/projects/mindflow/Sketch-to-Final-WIP.png" alt="Sketch to 3D" caption="Sketch to 3D" grouped={true} />
+    <ProjectImage src="/images/projects/mindflow/Blender.png" alt="Model in Blender" caption="Model in Blender" grouped={true} />
+    <NameValuePair 
+      name="Bringing Drawings to Life" 
+      value="After reviewing the sketches with the client and some slight revisions, it was time to convert them to 3D. I imported the sketches into a 3D modeling software called Blender and rebuilt them in 3D space. After that, I added some movement and rendered the final animations. These gave Mindflow a unique brand flair that helped them distinguish themselves from similar companies." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="Defining the Brand" 
+    description="Being a brand new startup, they were still figuring out who they were as a company. I met with the team and collaborated with them to establish the Mindflow brand. I took this work and created brand guidelines for Mindflow."
+  >
+    <ProjectImage src="/images/projects/mindflow/The-Brand.png" alt="Identified Brand Values" caption="Identified Brand Values" />
+    <ProjectImage src="/images/projects/mindflow/Brand-Guidelines.png" alt="Brand Guidelines" grouped={true} />
+    <NameValuePair 
+      name="Brand Guidelines" 
+      value="The brand guidelines help define how Mindflow presents itself to the public. It also provides guidelines on the logo, voice, and marketing to help Mindflow look good wherever they find themselves in the future." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="Building the Landing Page" 
+    description="With all the pieces in place, it was time to put it together. The goal of the landing page was to generate hype for their cyptocurrency software product. I led another workshop session where we brainstormed what content and structure we'd use."
+  >
+    <ProjectImage src="/images/projects/mindflow/Collaboration.png" alt="Collaborative workshop session" caption="Collaborative workshop session in Figjam to define the content of the landing page." />
+    <ProjectImage src="/images/projects/mindflow/homepage.png" alt="Homepage" grouped={true} />
+    <NameValuePair 
+      name="Collaborative Process" 
+      value="I engaged the client throughout the design process. We met after each milestone to realign and plan out our next steps. This helped greatly in ensuring everyone was on the same page and arriving at a solution that met their objectives." 
+    />
+    <div class="project-image lottie-demo">
+      <div class="w-layout-hflex flex-block">
+        <div data-w-id="4ec683b0-03e5-8528-8b2a-1746982cac8f" data-is-ix2-target="1" class="lottie-animation" data-animation-type="lottie" data-src="/documents/Fistbump.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="canvas" data-default-duration="1.9166666666666667" data-duration="0"></div>
+      </div>
+      <img src="/images/projects/mindflow/Website-Page-No-Fists.png" loading="lazy" alt="" class="image">
+    </div>
+    <NameValuePair 
+      name="Making it Move" 
+      value="To add a final layer of polish, it was time to bring movement to the landing page. There were multiple challenges in this step, such as file size and smooth motion, but eventually I found a process that would work. Through a combination of Webflow, After Effects, and a special file type called a LottieFile, I was able to attach the animation to the scroll position on the page. This resulted in powerful animations that created memorable experiences." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="Results" 
+    description="At the end the client was really excited about their new brand. I provided them a fresh logo, comprehensive brand guidelines, and a live landing page website complete with 3D illustration."
+  >
+    <ProjectImage src="/images/projects/mindflow/Cover-Image.png" alt="Cover Image" />
+    <NameValuePair 
+      name="Takeaways" 
+      value="This project had much more involved in the process than I initially thought. The animated 3D illustrations especially was a challenge, but I'm happy with how things came together. I learned how important process is for large projects like these. By having a timeline set out beforehand with checkins align the way, it made it much easier to feel confident about the direction we were heading. I also realized how being a designer includes a lot more than just design. A large part of this project involved working with the client to define their objectives and voice. It was all worth it though to arrive at a solution that was uniquely them." 
+    />
+  </TextSection>
+</CaseStudyLayout>

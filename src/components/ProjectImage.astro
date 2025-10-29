@@ -1,0 +1,13 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  grouped?: boolean;
+}
+
+const { src, alt, caption, grouped = false } = Astro.props;
+---
+
+<img src={src} loading="lazy" alt={alt} class={`project-image ${grouped ? 'grouped' : ''}`}>
+{caption && <p class="caption">{caption}<br></p>}

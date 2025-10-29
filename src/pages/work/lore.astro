@@ -1,0 +1,72 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import TextSection from '../../components/TextSection.astro';
+import NameValuePair from '../../components/NameValuePair.astro';
+import ProjectImage from '../../components/ProjectImage.astro';
+---
+
+<CaseStudyLayout
+  title="Lore | Elisha Coad's Portfolio"
+  description="Lore is reimagining of the D&D Beyond app and provides all the tools for D&D players to make the most of their D&D play sessions."
+  projectTitle="Lore"
+  projectSubtitle="UX / UI / Branding"
+  overview="Dungeons & Dragons (D&D) is a popular tabletop role-playing game where players take on unique characters and build stories in their own rich fantasy worlds. In 2017, D&D Beyond was launched for web which provided D&D players additional tools to use for their games. Shortly after, a mobile version of this platform was released. Unfortunately though, the app wasn't well received due to poor design and user experience. Lore is reimagining of that app, but puts the player's needs first. Please note: this work is speculative"
+  timeline="1 month, 2020"
+  role="UX/UI Designer"
+  tools="Adobe XD, Illustrator, Photoshop"
+>
+  <TextSection 
+    title="Research" 
+    description="To start this project, I familiarized myself with the original D&D app and spent some time exploring the needs and wants of current D&D players."
+  >
+    <ProjectImage src="/images/projects/lore/Original-App.png" alt="Original App" />
+    <NameValuePair 
+      name="The Original App" 
+      value="I already had some familiarity with the D&D Beyond app and chose it to redesign it due to a clunky UX, poor app reviews, and an overall generic design. I reinstalled the app and did a deep dive into its current features and interface." 
+    />
+    <ProjectImage src="/images/projects/lore/Interviews.png" alt="Notes from Interview Process" caption="Notes from Interview Process" />
+    <ProjectImage src="/images/projects/lore/User-Personas.png" alt="User Personas" grouped={true} />
+    <NameValuePair 
+      name="Creating User Personas" 
+      value="I then conducted some initial user interviews with both new and seasoned D&D players. I created three user personas based off the types of people I interviewed. They generally fell into one of three categories, the novice/beginner type, the intermediate in-it-for-fun type, and the serious all-in type. In addition to these user personas, I also created a product persona that helped me understand how the product would interact with the users. These personas guided the rest of the design process and ensured I was designing for actual users and real problems." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="Branding" 
+    description="Using what I learned about the D&D franchise and the players, I designed a fresh identity for the app to breath some life into it."
+  >
+    <ProjectImage src="/images/projects/lore/Explorations.png" alt="Brand Sketches" caption="Brand Sketches" />
+    <ProjectImage src="/images/projects/lore/LoreBrand.png" alt="Brand Spec Page" caption="Brand Spec Page" grouped={true} />
+    <ProjectImage src="/images/projects/lore/Logo-Mark_1.png" alt="Logo Mark" grouped={true} />
+    <NameValuePair 
+      name="A Brand that Respects its Roots" 
+      value="In this redesign, I wanted to pay homage to the roots of D&D while still allowing the app to take on a personality of its own. The name and icon incorporate key features from the D&D logo and are then further customized to create a distinct identity. I chose Friz Quadrata as the primary typeface as it has an excellent nostalgic factor due to its use in classic D&D content. These elements all come together to create a brand that is both novel yet familiar." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="UI" 
+    description="I built out the UI with a dark theme as it fit the D&D aesthetic. The interface was all built using Google's Material Design standards including their guidelines for dark themes. This provided a solid base structure from which to expand."
+  >
+    <ProjectImage src="/images/projects/lore/Screenshots.png" alt="Screenshots" />
+    <ProjectImage src="/images/projects/lore/Documentation.png" alt="Documentation" grouped={true} />
+    <NameValuePair 
+      name="User Testing and Documenting" 
+      value="After designing the UI and prototyping it, I did some user testing interviews to hear feedback from D&D players. I incorporated their feedback and then created thorough documentation of the app highlighting the flows and interactions. This would make it easy to handoff to developers." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="Results" 
+    description="At the end, I completed a new D&D sub-brand for the app, a revised UI, and interviews with D&D players along the way to validate the project."
+  >
+    <ProjectImage src="/images/projects/lore/Final-Product-Shot.png" alt="Final Product Shot" />
+    <ProjectImage src="/images/projects/lore/Comparison.png" alt="Comparison" grouped={true} />
+    <p class="caption">My designs compared to the official rebrand.<br></p>
+    <NameValuePair 
+      name="Takeaways" 
+      value="While done as an experimental project, I learned a lot through the process. It was fun to dig into something that I enjoyed and to better understand other players in the hobby. It's also funny because  a couple years after I created my redesign, the D&D company released an official redesign of their own, which surprisingly had a lot of similarities to my redesign. Not only was it dark themed, but several of the screens and features mirrored what I added in this Lore project. While who knows if they saw my work, it is cool to see that I wasn't too far off the mark." 
+    />
+  </TextSection>
+</CaseStudyLayout>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+---
+
+<BaseLayout 
+  title="Elisha Coad's Portfolio"
+  description="Hey there, I'm a product designer passionate about creating work that brings value to people's lives."
+>
+  <Header currentPage="index" />
+  
+  <div class="section">
+    <div class="w-container">
+      <div class="hero">
+        <h1>Elisha Coad</h1>
+        <p class="subtitle">I'm a product designer who crafts <span class="highlight">elegant</span>, <span class="highlight">delightful</span>, and <span class="highlight">impactful</span> experiences for everyone.<br></p>
+      </div>
+      <div class="homepage-content">
+        <h3 class="recent-work">Recent Work</h3>
+        
+        <ProjectCard
+          image="/images/projects/marky/Marky-Thumbnail.png"
+          title="Marky"
+          description="Social media marketing made simple."
+          link="https://mymarky.ai/"
+          linkText="View Website"
+          isExternal={true}
+          animationId="2ffe8957-0f51-ec7c-9a3a-67680071a747"
+        />
+        
+        <ProjectCard
+          image="/images/projects/lore/Lore.png"
+          title="Lore"
+          description="Adventure in style with this D&D companion app."
+          link="/work/lore"
+          linkText="View Case Study"
+          animationId="948155fc-4e4d-5a85-9e7c-79e57fd81967"
+        />
+        
+        <ProjectCard
+          image="/images/projects/mindflow/Mindflow-Thumbnail.png"
+          title="Mindflow"
+          description="Cryptocurrency meets education."
+          link="/work/mindflow"
+          linkText="View Case Study"
+          animationData="/documents/mindflow.json"
+          animationId="348d9eb9-ade1-cfe4-6009-c089848f80a9"
+        />
+      </div>
+      <p class="confidential">To check out my confidential design work with Apple and John Deere, please email me at <a href="mailto:elisha@coad.net?subject=I'd%20like%20to%20see%20your%20confidential%20work" class="hyperlink mouse-hover-fx">elisha@coad.net</a>
+      </p>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

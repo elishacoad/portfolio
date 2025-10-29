@@ -1,0 +1,46 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import TextSection from '../../components/TextSection.astro';
+import NameValuePair from '../../components/NameValuePair.astro';
+---
+
+<CaseStudyLayout
+  title="Marky | Elisha Coad's Portfolio"
+  description="Social media marketing made simple."
+  projectTitle="Marky"
+  projectSubtitle="UX / UI / Product Design"
+  overview="Marky is a social media marketing platform that simplifies content creation and scheduling for businesses. The project involved designing an intuitive dashboard and content creation tools."
+  timeline="4 months, 2022"
+  role="Product Designer, UX Designer"
+  tools="Figma, Principle, Webflow"
+>
+  <TextSection 
+    title="Project Overview" 
+    description="Marky was designed to democratize social media marketing by making it accessible to small businesses and entrepreneurs who lack dedicated marketing teams."
+  >
+    <NameValuePair 
+      name="Design Challenge" 
+      value="Creating a platform that simplifies complex social media marketing workflows while providing powerful features for content creation and analytics." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="User Experience" 
+    description="The design focused on reducing cognitive load and making social media marketing feel approachable and manageable."
+  >
+    <NameValuePair 
+      name="Key Features" 
+      value="Intuitive content calendar, AI-powered content suggestions, and streamlined posting workflows across multiple platforms." 
+    />
+  </TextSection>
+
+  <TextSection 
+    title="Results" 
+    description="The platform successfully launched and has helped thousands of businesses streamline their social media presence."
+  >
+    <NameValuePair 
+      name="Impact" 
+      value="Users reported significant time savings and improved engagement rates on their social media content." 
+    />
+  </TextSection>
+</CaseStudyLayout>

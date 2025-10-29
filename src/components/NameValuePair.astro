@@ -1,0 +1,14 @@
+---
+export interface Props {
+  name: string;
+  value: string;
+  noMargin?: boolean;
+}
+
+const { name, value, noMargin = false } = Astro.props;
+---
+
+<div class={`name-value-pair ${noMargin ? 'no-margin' : ''}`}>
+  <h4>{name}</h4>
+  <p>{value}<br></p>
+</div>

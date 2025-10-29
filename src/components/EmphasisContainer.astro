@@ -1,0 +1,13 @@
+---
+export interface Props {
+  emphasis: string;
+  source?: string;
+}
+
+const { emphasis, source } = Astro.props;
+---
+
+<div class="emphasis-container">
+  <p class="emphasis">"{emphasis}"<br></p>
+  {source && <p class="quote-source">— {source}</p>}
+</div>

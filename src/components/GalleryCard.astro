@@ -1,0 +1,110 @@
+---
+import type { GalleryCategory } from '../data/gallery';
+
+interface Props {
+  category: GalleryCategory;
+}
+
+const { category } = Astro.props;
+---
+
+<div class="playground-container">
+  <button 
+    class="lightbox-trigger mouse-hover-fx" 
+    data-gallery={category.id}
+    aria-label={`View ${category.title} gallery`}
+  >
+    <img 
+      src={category.thumbnail} 
+      alt={`${category.title} thumbnail`}
+      class="playground-image"
+      loading="lazy"
+    />
+    <img 
+      src="/images/icons/Fullscreen.svg" 
+      loading="lazy" 
+      height="24" 
+      width="24" 
+      alt="View fullscreen" 
+      class="lightbox-icon"
+    />
+  </button>
+  <h3 class="playground-title">{category.title}</h3>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+    
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const galleryId = trigger.getAttribute('data-gallery');
+        
+        // Get gallery data from the page
+        const galleryData = (window as any).galleryData || {};
+        const categoryData = galleryData[galleryId || ''];
+        
+        if (categoryData?.images) {
+          // Use centralized lightbox manager
+          const lightboxManager = (window as any).lightboxManager;
+          if (lightboxManager) {
+            lightboxManager.openGallery(categoryData.images);
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .playground-container {
+    position: relative;
+  }
+  
+  .lightbox-trigger {
+    position: relative;
+    display: block;
+    border: none;
+    background: none;
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: none;
+    width: 100%;
+  }
+  
+  .lightbox-trigger:hover {
+    box-shadow: 0 3px 20px -4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .lightbox-trigger:active {
+    transform: translateY(0);
+  }
+  
+  .playground-image {
+    border-radius: 4px;
+    width: 100%;
+    height: auto;
+  }
+  
+  .lightbox-icon {
+    filter: invert();
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    position: absolute;
+    inset: 8px 8px auto auto;
+  }
+  
+  .playground-title {
+    margin-top: 10px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+  }
+</style>

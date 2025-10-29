@@ -1,0 +1,44 @@
+---
+export interface Props {
+  href: string;
+  text: string;
+  isExternal?: boolean;
+  isDisabled?: boolean;
+  animationId?: string;
+  variant?: string;
+}
+
+const { 
+  href, 
+  text, 
+  isExternal = false, 
+  isDisabled = false,
+  variant = ""
+} = Astro.props;
+
+const linkTarget = isExternal ? '_blank' : undefined;
+const linkRel = isExternal ? 'noopener noreferrer' : undefined;
+const variantClass = variant ? ` ${variant}` : '';
+---
+
+<div class="btn-spacer">
+  <a 
+    data-w-id={"69d08d4c-5c72-863e-6fff-d1dccc2b08e9"} 
+    href={href} 
+    class={`custom-btn mouse-hover-fx w-inline-block${variantClass} ${isDisabled ? 'disabled' : ''}`} 
+    target={linkTarget} 
+    rel={linkRel}
+  >
+    <div class="custom-btn-wrapper">
+      <div class="gold-box l">
+        <img src="/images/icons/Arrow.svg" loading="lazy" alt="" class="whiten">
+      </div>
+      <div class="gold-box m">
+        <p class="btn-text">{text}</p>
+      </div>
+      <div class="gold-box r">
+        <img src="/images/icons/Arrow.svg" loading="lazy" alt="" class="arrow">
+      </div>
+    </div>
+  </a>
+</div>

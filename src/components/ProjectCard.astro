@@ -1,0 +1,48 @@
+---
+import CustomButton from './CustomButton.astro';
+
+export interface Props {
+  image: string;
+  title: string;
+  description: string;
+  link: string;
+  linkText: string;
+  isExternal?: boolean;
+  isHidden?: boolean;
+  animationData?: string;
+  animationId?: string;
+}
+
+const { 
+  image, 
+  title, 
+  description, 
+  link, 
+  linkText, 
+  isExternal = false,
+  isHidden = false,
+  animationData,
+  animationId
+} = Astro.props;
+---
+
+<div class={`flexbox-item text-left ${isHidden ? 'hide' : ''}`}>
+  <div>
+    {animationData ? (
+      <div class="image-left" data-w-id={animationId} data-animation-type="lottie" data-src={animationData} data-loop="0" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="0.875" data-duration="0.1"></div>
+    ) : (
+      <img src={image} loading="lazy" alt="" class="image-left" />
+    )}
+  </div>
+  <div class="project-blurb-div">
+    <h2 data-w-id={animationId} style="opacity:0">{title}</h2>
+    <p data-w-id={animationId} style="opacity:0" class="body-lg">{description}</p>
+    <CustomButton 
+      href={link} 
+      text={linkText} 
+      isExternal={isExternal} 
+      isDisabled={link === '#'} 
+      animationId={animationId}
+    />
+  </div>
+</div>

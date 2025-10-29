@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CustomButton from '../components/CustomButton.astro';
+import ContactLinks from '../components/ContactLinks.astro';
+---
+
+<BaseLayout 
+  title="About | Elisha Coad Design Portfolio"
+  description="About | Elisha Coad Design Portfolio"
+>
+  <Header currentPage="about" />
+  
+  <div class="section">
+    <div class="w-container">
+      <img src="/images/archive/Untitled_Artwork.png" loading="lazy" alt="" class="hat hide">
+      <div class="flex-vert-center hero about-section">
+        <div class="profile-container w-clearfix">
+          <img src="/images/assets/Profile-Pic-2022.jpg" loading="lazy" alt="" class="profile-picture">
+        </div>
+        <div class="about">
+          <p class="subtitle">Hey there! I'm Elisha, a product designer by day and a tired designer by night. With a background in programming and branding, I design products for companies in the tech industry.<br></p>
+        </div>
+      </div>
+      <div class="w-layout-grid text-grid">
+        <h2 class="text-title">background</h2>
+        <div class="grid-container">
+          <p>I started out programming games and building websites, which led to freelance work as a software developer and graphic designer. In college I combined my passion for the visual and the technical, graduating with a dual emphasis in interface and graphic design.<br><br>I now use my skills to create products that are enjoyable to use and built with user's needs first-and-foremost. Whatever it is I'm working on, I'm motivated by creating designs that empower and inspire others.</p>
+        </div>
+        <h2 class="text-title">skillset</h2>
+        <div class="grid-container w-row">
+          <div class="skills-col w-col w-col-4">
+            <div class="skills title">Product</div>
+            <div class="skills">Visual Design<br>UX Design<br>Design Systems</div>
+          </div>
+          <div class="skills-col w-col w-col-4">
+            <div class="skills title">Graphics</div>
+            <div class="skills">Logo Design<br>Digital Illustration<br>Web Design</div>
+          </div>
+          <div class="skills-col w-col w-col-4">
+            <div class="skills title">Hobbies</div>
+            <div class="skills">Game Design<br>Board Games<br>Miniature Painting</div>
+          </div>
+        </div>
+        <h2 class="text-title">connect</h2>
+        <div id="w-node-efaf5851-a80c-46fc-c246-bce4ce3b3a92-b0c76749" class="grid-container last">
+          <p>
+            <ContactLinks variant="inline" />
+            Want to chat? Reach out anytime!
+          </p>
+          <div class="btn-spacer">
+            <CustomButton 
+              href="/documents/Elisha-Coad-Resume.pdf" 
+              text="Resume" 
+              isExternal={true}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
