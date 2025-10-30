@@ -1,5 +1,6 @@
 ---
 import type { GalleryCategory } from '../data/gallery';
+import Lightbox from './Lightbox.astro';
 
 interface Props {
   category: GalleryCategory;
@@ -8,16 +9,17 @@ interface Props {
 const { category } = Astro.props;
 ---
 
-<div class="playground-container">
+<div class="relative">
   <button 
-    class="lightbox-trigger mouse-hover-fx" 
-    data-gallery={category.id}
+    type="button"
+    class="gallery-trigger relative block border-0 bg-transparent p-0 rounded overflow-hidden transition-[box-shadow_transform] duration-200 cursor-none w-full hover:shadow-[0_3px_20px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 active:translate-y-0 mouse-hover-fx"
+    data-gallery-id={category.id}
     aria-label={`View ${category.title} gallery`}
   >
     <img 
       src={category.thumbnail} 
       alt={`${category.title} thumbnail`}
-      class="playground-image"
+      class="rounded w-full h-auto"
       loading="lazy"
     />
     <img 
@@ -26,85 +28,10 @@ const { category } = Astro.props;
       height="24" 
       width="24" 
       alt="View fullscreen" 
-      class="lightbox-icon"
+      class="invert bg-[rgba(255,255,255,0.3)] rounded-sm absolute top-2 right-2"
     />
   </button>
-  <h3 class="playground-title">{category.title}</h3>
+  <h3 class="mt-2.5 text-[var(--gold)] uppercase mb-2.5 text-lg font-medium leading-[21px]">{category.title}</h3>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const triggers = document.querySelectorAll('.lightbox-trigger');
-    
-    triggers.forEach(trigger => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        const galleryId = trigger.getAttribute('data-gallery');
-        
-        // Get gallery data from the page
-        const galleryData = (window as any).galleryData || {};
-        const categoryData = galleryData[galleryId || ''];
-        
-        if (categoryData?.images) {
-          // Use centralized lightbox manager
-          const lightboxManager = (window as any).lightboxManager;
-          if (lightboxManager) {
-            lightboxManager.openGallery(categoryData.images);
-          }
-        }
-      });
-    });
-  });
-</script>
-
-<style>
-  .playground-container {
-    position: relative;
-  }
-  
-  .lightbox-trigger {
-    position: relative;
-    display: block;
-    border: none;
-    background: none;
-    padding: 0;
-    border-radius: 4px;
-    overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s;
-    cursor: none;
-    width: 100%;
-  }
-  
-  .lightbox-trigger:hover {
-    box-shadow: 0 3px 20px -4px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-  }
-  
-  .lightbox-trigger:active {
-    transform: translateY(0);
-  }
-  
-  .playground-image {
-    border-radius: 4px;
-    width: 100%;
-    height: auto;
-  }
-  
-  .lightbox-icon {
-    filter: invert();
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    position: absolute;
-    inset: 8px 8px auto auto;
-  }
-  
-  .playground-title {
-    margin-top: 10px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 21px;
-  }
-</style>
+<Lightbox images={category.images} galleryId={category.id} />

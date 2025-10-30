@@ -20,23 +20,22 @@ const {
   link, 
   linkText, 
   isExternal = false,
-  isHidden = false,
   animationData,
   animationId
 } = Astro.props;
 ---
 
-<div class={`flexbox-item text-left ${isHidden ? 'hide' : ''}`}>
-  <div>
+<div class={`flex flex-row items-center gap-x-24`}>
+  <div class="flex-1">
     {animationData ? (
-      <div class="image-left" data-w-id={animationId} data-animation-type="lottie" data-src={animationData} data-loop="0" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="0.875" data-duration="0.1"></div>
+      <div class="relative -right-8" data-w-id={animationId} data-animation-type="lottie" data-src={animationData} data-loop="0" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="0.875" data-duration="0.1"></div>
     ) : (
-      <img src={image} loading="lazy" alt="" class="image-left" />
+      <img src={image} loading="lazy" alt="" class="relative -right-8" />
     )}
   </div>
-  <div class="project-blurb-div">
+  <div class="flex-1">
     <h2 data-w-id={animationId} style="opacity:0">{title}</h2>
-    <p data-w-id={animationId} style="opacity:0" class="body-lg">{description}</p>
+    <p data-w-id={animationId} style="opacity:0" class="text-lg leading-[150%]">{description}</p>
     <CustomButton 
       href={link} 
       text={linkText} 

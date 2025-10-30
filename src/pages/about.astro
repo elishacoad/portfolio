@@ -4,59 +4,53 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CustomButton from '../components/CustomButton.astro';
 import ContactLinks from '../components/ContactLinks.astro';
+import SkillsColumn from '../components/SkillsColumn.astro';
+import GridSection from '../components/GridSection.astro';
 ---
 
 <BaseLayout 
-  title="About | Elisha Coad Design Portfolio"
-  description="About | Elisha Coad Design Portfolio"
+  title="About - Elisha Coad"
+  description="Learn about Elisha Coad, a product designer with a background in programming and branding. Specializing in visual design, UX design, and design systems."
 >
   <Header currentPage="about" />
   
   <div class="section">
     <div class="w-container">
-      <img src="/images/archive/Untitled_Artwork.png" loading="lazy" alt="" class="hat hide">
-      <div class="flex-vert-center hero about-section">
-        <div class="profile-container w-clearfix">
-          <img src="/images/assets/Profile-Pic-2022.jpg" loading="lazy" alt="" class="profile-picture">
+      <img src="/images/archive/Untitled_Artwork.png" loading="lazy" alt="" class="hat hidden">
+      <div class="flex flex-col justify-center items-center hero mt-[35vh] relative">
+        <div class="border-[1px] border-solid border-[#b0afb0] bg-[#fafafa] rounded-full p-[10px] absolute top-[-110px] w-clearfix">
+          <img src="/images/assets/Profile-Pic-2022.jpg" loading="lazy" alt="" class="float-left object-cover object-[50%_20%] rounded-full w-[200px] h-[200px] mb-0">
         </div>
-        <div class="about">
-          <p class="subtitle">Hey there! I'm Elisha, a product designer by day and a tired designer by night. With a background in programming and branding, I design products for companies in the tech industry.<br></p>
+        <div class="border-[1px] border-solid border-[#b0afb0] max-w-[700px] pt-[140px] px-10 pb-5">
+          <p class="mt-5 mr-[58px] text-2xl font-light leading-[150%]">Hey there! I'm Elisha, a product designer by day and a tired designer by night. With a background in programming and branding, I design products for companies in the tech industry.<br></p>
         </div>
       </div>
-      <div class="w-layout-grid text-grid">
-        <h2 class="text-title">background</h2>
-        <div class="grid-container">
+      <div class="w-layout-grid gap-x-[60px] gap-y-[140px] grid-cols-[.6fr_1fr] mt-[20vh] mb-[140px]">
+        <GridSection title="background">
           <p>I started out programming games and building websites, which led to freelance work as a software developer and graphic designer. In college I combined my passion for the visual and the technical, graduating with a dual emphasis in interface and graphic design.<br><br>I now use my skills to create products that are enjoyable to use and built with user's needs first-and-foremost. Whatever it is I'm working on, I'm motivated by creating designs that empower and inspire others.</p>
-        </div>
-        <h2 class="text-title">skillset</h2>
-        <div class="grid-container w-row">
-          <div class="skills-col w-col w-col-4">
-            <div class="skills title">Product</div>
-            <div class="skills">Visual Design<br>UX Design<br>Design Systems</div>
+        </GridSection>
+        
+        <GridSection title="skillset">
+          <div class="mb-0 w-row">
+            <SkillsColumn title="Product" skills="Visual Design<br>UX Design<br>Design Systems" />
+            <SkillsColumn title="Graphics" skills="Logo Design<br>Digital Illustration<br>Web Design" />
+            <SkillsColumn title="Hobbies" skills="Game Design<br>Board Games<br>Miniature Painting" />
           </div>
-          <div class="skills-col w-col w-col-4">
-            <div class="skills title">Graphics</div>
-            <div class="skills">Logo Design<br>Digital Illustration<br>Web Design</div>
-          </div>
-          <div class="skills-col w-col w-col-4">
-            <div class="skills title">Hobbies</div>
-            <div class="skills">Game Design<br>Board Games<br>Miniature Painting</div>
-          </div>
-        </div>
-        <h2 class="text-title">connect</h2>
-        <div id="w-node-efaf5851-a80c-46fc-c246-bce4ce3b3a92-b0c76749" class="grid-container last">
+        </GridSection>
+        
+        <GridSection title="connect">
           <p>
             <ContactLinks variant="inline" />
             Want to chat? Reach out anytime!
           </p>
-          <div class="btn-spacer">
+          <div class="mt-5">
             <CustomButton 
               href="/documents/Elisha-Coad-Resume.pdf" 
               text="Resume" 
               isExternal={true}
             />
           </div>
-        </div>
+        </GridSection>
       </div>
     </div>
   </div>

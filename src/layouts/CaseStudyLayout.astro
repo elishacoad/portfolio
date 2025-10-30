@@ -14,6 +14,7 @@ export interface Props {
   timeline: string;
   role: string;
   tools: string;
+  ogImage?: string;
 }
 
 const { 
@@ -24,27 +25,29 @@ const {
   overview,
   timeline,
   role,
-  tools
+  tools,
+  ogImage
 } = Astro.props;
 ---
 
 <BaseLayout 
   title={title}
   description={description}
+  ogImage={ogImage}
 >
   <Header currentPage="work" />
   
   <div class="section">
-    <div class="project-container w-container">
-      <div class="project-div">
-        <div class="project-heading-image-div">
-          <img src={projectTitle === 'Lore' ? '/images/projects/lore/Logo-Mark.png' : `/images/projects/${projectTitle.toLowerCase()}/${projectTitle}-Header.png`} loading="lazy" alt="" class="project-heading-image">
+    <div class="max-w-[720px] w-container">
+      <div class="mt-[25vh] mb-[140px]">
+        <div class="flex flex-col items-center">
+          <img src={projectTitle === 'Lore' ? '/images/projects/lore/Logo-Mark.png' : `/images/projects/${projectTitle.toLowerCase()}/${projectTitle}-Header.png`} loading="lazy" alt="" class="object-cover rounded-lg max-w-[120%] max-h-[400px]">
         </div>
-        <div class="project-heading">
+        <div class="mt-12">
           <h2>{projectTitle}</h2>
-          <h5 class="project-subtitle">{projectSubtitle}</h5>
+          <h5 class="-mt-[5px]">{projectSubtitle}</h5>
         </div>
-        <div class="text-section overview">
+        <div class="border-solid border-[.5px] border-[var(--med-grey)] bg-[var(--light-grey)] rounded mt-6 px-6 py-2">
           <NameValuePair name="Overview" value={overview} noMargin={true} />
           <NameValuePair name="Timeline" value={timeline} />
           <NameValuePair name="Role" value={role} />
@@ -53,19 +56,7 @@ const {
         
         <slot />
         
-        <div class="bottom-section">
-          <h2 class="text-title hide">Check out my other work</h2>
-          <div class="project-blurb-div hide">
-            <h2>Lore</h2>
-            <p class="body-lg botmarginneg">Adventure in style with this D&D companion app.</p>
-            <div class="btn-spacer">
-              <CustomButton 
-                href="#" 
-                text="Case Study Coming Soon" 
-                isDisabled={true}
-              />
-            </div>
-          </div>
+        <div class="flex justify-center mt-[120px] -mb-[60px]">
           <a href="/" class="button mouse-hover-fx w-button">Back to all work</a>
         </div>
       </div>

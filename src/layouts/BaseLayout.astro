@@ -1,4 +1,9 @@
 ---
+import '../styles/normalize.css';
+import '../styles/webflow.css';
+import '../styles/webflow-custom.css';
+import '../styles/global.css';
+
 export interface Props {
   title: string;
   description?: string;
@@ -6,37 +11,72 @@ export interface Props {
   ogDescription?: string;
   twitterTitle?: string;
   twitterDescription?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
+
+const baseUrl = 'https://elishacoad.com';
+const defaultDescription = "Hey there, I'm a product designer passionate about creating work that brings value to people's lives.";
+const defaultOgImage = `${baseUrl}/images/assets/Profile-Pic-2022.jpg`;
 
 const { 
   title, 
-  description = "Hey there, I'm a product designer passionate about creating work that brings value to people's lives.",
+  description = defaultDescription,
   ogTitle = title,
   ogDescription = description,
   twitterTitle = title,
-  twitterDescription = description
+  twitterDescription = description,
+  ogImage = defaultOgImage,
+  noindex = false
 } = Astro.props;
+
+const currentUrl = new URL(Astro.url.pathname, baseUrl).toString();
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Elisha Coad",
+  "url": baseUrl,
+  "jobTitle": "Product Designer",
+  "description": defaultDescription,
+  "email": "elisha@coad.net",
+  "sameAs": [
+    "https://www.linkedin.com/in/elishacoad/",
+    "https://medium.com/@elishacoad"
+  ]
+};
 ---
 
 <!DOCTYPE html>
-<html data-wf-page="636958ba422ea4fe60c76747" data-wf-site="5fe3a5be753d1193613ca2c7">
+<html lang="en" data-wf-page="636958ba422ea4fe60c76747" data-wf-site="5fe3a5be753d1193613ca2c7">
 <head>
   <meta charset="utf-8">
   <title>{title}</title>
-  <meta content={description} name="description">
-  <meta content={ogTitle} property="og:title">
-  <meta content={ogDescription} property="og:description">
-  <meta content={twitterTitle} property="twitter:title">
-  <meta content={twitterDescription} property="twitter:description">
-  <meta property="og:type" content="website">
-  <meta content="summary_large_image" name="twitter:card">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Astro" name="generator">
+  <meta name="description" content={description}>
+  {noindex && <meta name="robots" content="noindex, nofollow">}
+  <meta name="author" content="Elisha Coad">
   
-  <!-- Webflow CSS -->
-  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="/css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="/css/elishacoad.webflow.css" rel="stylesheet" type="text/css">
+  <link rel="canonical" href={currentUrl}>
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={ogTitle}>
+  <meta property="og:description" content={ogDescription}>
+  <meta property="og:url" content={currentUrl}>
+  <meta property="og:image" content={ogImageUrl}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Elisha Coad Portfolio">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={twitterTitle}>
+  <meta name="twitter:description" content={twitterDescription}>
+  <meta name="twitter:image" content={ogImageUrl}>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Astro">
+  
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   
   <!-- Adobe Typekit -->
   <script src="https://use.typekit.net/jlh1gkd.js" type="text/javascript"></script>
@@ -47,68 +87,6 @@ const {
   <link href="/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="/webclip.png" rel="apple-touch-icon">
 
-  <!-- Button Draw Animation Styles -->
-  <style>
-    .button {
-      border: 0;
-      box-sizing: border-box;
-      position: relative;
-      vertical-align: middle;
-    }
-    @media (hover: hover) {
-      .button::before, .button::after {
-        box-sizing: inherit;
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-      }
-      .button {
-        transition: color 0.2s;
-      }
-      .button::before, .button::after {
-        border: 1px solid transparent;
-        width: 0;
-        height: 0;
-      }
-      .button::before {
-        bottom: 0;
-        left: 0;
-      }
-      .button::after {
-        top: 0;
-        right: 0;
-      }
-      .button:hover {
-        color: #656565;
-      }
-      .button:hover::before, .button:hover::after {
-        width: 100%;
-        height: 100%;
-      }
-      .button:hover::before {
-        border-bottom-color: #656565;
-        border-right-color: #656565;
-        transition: width 0.2s ease-out, height 0.2s ease-out 0.2s;
-      }
-      .button:hover::after {
-        border-top-color: #656565;
-        border-left-color: #656565;
-        transition: border-color 0s ease-out 0.4s, width 0.2s ease-out 0.4s, height 0.2s ease-out 0.6s;
-      }
-      .button.w--current:hover {
-        color: #b08b5d;
-      }
-      .button.w--current:hover::before {
-        border-bottom-color: #b08b5d;
-        border-right-color: #b08b5d;
-      }
-      .button.w--current:hover::after {
-        border-top-color: #b08b5d;
-        border-left-color: #b08b5d;
-      }
-    }
-  </style>
 </head>
 <body>
   <!-- Custom Cursor -->
@@ -124,84 +102,6 @@ const {
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5fe3a5be753d1193613ca2c7" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="/js/webflow.js" type="text/javascript"></script>
 
-  <!-- Custom Cursor Styles -->
-  <div id="custom-cursor" class="html-embed w-embed">
-    <style>
-      .cursor-wrapper {pointer-events: none;}
-      @media only screen
-       and (min-device-width: 1024px)
-       and (max-device-width: 1024px)
-       and (orientation: portrait)
-       and (-webkit-min-device-pixel-ratio: 2) {
-      body {
-         cursor: default;
-      }
-      .cursor-wrapper {
-         display: none;
-      }
-      a {
-         cursor: pointer;
-      }
-      }
-      @media only screen
-       and (min-device-width: 1366px)
-       and (max-device-width: 1366px)
-       and (orientation: landscape)
-       and (-webkit-min-device-pixel-ratio: 2) {
-        body {
-           cursor: default;
-        }
-        .cursor-wrapper {
-           display: none;
-        }
-        a {
-           cursor: pointer;
-        }
-      }
-      @media (pointer: coarse) {
-        body {
-           cursor: default;
-        }
-        .cursor-wrapper {
-           display: none;
-        }
-        a {
-           cursor: pointer;
-        }
-      }
-    </style>
-  </div>
-
-    <!-- Playground Grid Styles -->
-    <style>
-      .w-layout-grid.playground-grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        grid-template-rows: auto auto !important;
-        grid-column-gap: 20px !important;
-        grid-row-gap: 20px !important;
-      }
-      @media screen and (max-width: 991px) {
-        .w-layout-grid.playground-grid {
-          grid-template-columns: 1fr !important;
-        }
-      }
-    </style>
-
-    <!-- Project Card Vertical Centering -->
-    <div id="project-card-centering" class="html-embed w-embed">
-      <style>
-        .flexbox-item {
-          align-items: center;
-        }
-        .project-blurb-div {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          height: 100%;
-        }
-      </style>
-    </div>
 
   <!-- Mouse Movement Script for H1 Effect -->
   <script>

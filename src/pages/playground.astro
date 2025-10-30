@@ -7,20 +7,20 @@ import { galleryCategories } from '../data/gallery';
 ---
 
 <BaseLayout 
-  title="Playground | Elisha Coad's Portfolio"
-  description="Playground | Elisha Coad's Portfolio"
+  title="Playground - Elisha Coad"
+  description="A collection of freelance, university, and personal design projects including branding, illustration, and digital design work."
 >
   <Header currentPage="playground" />
   <div class="section">
     <div class="w-container">
       <!-- Playground Gallery -->
-      <div class="playground">
+      <div class="mb-[200px]">
         <div class="hero">
           <h1>Playground</h1>
-          <p class="subtitle">Here's a miscellaneous collection of <span class="gold">freelance</span>, <span class="gold">university</span>, and <span class="gold">personal</span> projects from the past few years.</p>
+          <p class="mt-5 mr-[58px] text-2xl font-light leading-[150%]">Here's a miscellaneous collection of <span class="gold">freelance</span>, <span class="gold">university</span>, and <span class="gold">personal</span> projects from the past few years.</p>
         </div>
       </div>
-      <div class="w-layout-grid playground-grid">
+      <div class="w-layout-grid mb-[12vh] grid-cols-1 sm:grid-cols-2">
         {galleryCategories.map(category => (
           <GalleryCard category={category} />
         ))}
@@ -31,17 +31,10 @@ import { galleryCategories } from '../data/gallery';
   <Footer />
 </BaseLayout>
 
-<!-- Load PhotoSwipe CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe.css">
-
-<!-- Initialize lightbox manager and gallery data -->
-<script define:vars={{ galleryCategories }}>
-  // Load lightbox manager
-  import('/src/scripts/lightbox-manager.ts');
+<script>
+  import { initGalleryTriggers } from '../scripts/lightbox';
   
-  // Make gallery data available
-  window.galleryData = {};
-  galleryCategories.forEach(category => {
-    window.galleryData[category.id] = category;
-  });
+  if (typeof window !== 'undefined') {
+    initGalleryTriggers();
+  }
 </script>

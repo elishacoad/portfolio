@@ -9,5 +9,5 @@ export interface Props {
 const { src, alt, caption, grouped = false } = Astro.props;
 ---
 
-<img src={src} loading="lazy" alt={alt} class={`project-image ${grouped ? 'grouped' : ''}`}>
-{caption && <p class="caption">{caption}<br></p>}
+<img src={src} loading="lazy" alt={alt} class={`border-solid border-[.5px] border-[var(--med-grey)] rounded min-w-full ${grouped ? 'mt-[10px]' : 'mt-[60px]'} shadow-[0_2px_5px_-2px_rgba(0,0,0,0.1)]`}>
+{caption && <p class="text-center mt-[5px] text-sm">{caption}<br></p>}

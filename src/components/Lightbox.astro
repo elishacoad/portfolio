@@ -1,0 +1,264 @@
+---
+interface Props {
+  images: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+  }>;
+  galleryId: string;
+}
+
+const { images, galleryId } = Astro.props;
+const modalId = `lightbox-${galleryId}`;
+---
+
+<!-- Lightbox Modal -->
+<div 
+  id={modalId} 
+  class="lightbox-modal" 
+  style="display: none;"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image gallery"
+  aria-hidden="true"
+>
+  <button 
+    type="button"
+    class="lightbox-close" 
+    aria-label="Close lightbox"
+    tabindex="0"
+  >
+    &times;
+  </button>
+  
+  <div class="lightbox-content">
+    {images.map((image, index) => (
+      <div 
+        class="lightbox-slide" 
+        style={`display: ${index === 0 ? 'block' : 'none'};`}
+        aria-hidden={index !== 0}
+      >
+        <div class="lightbox-image-wrapper">
+          <img src={image.src} alt={image.alt} class="lightbox-image" loading="lazy">
+        </div>
+        <div class="lightbox-caption">{image.caption || image.alt}</div>
+      </div>
+    ))}
+    
+    <button 
+      type="button"
+      class="lightbox-prev" 
+      aria-label="Previous image"
+      tabindex="0"
+    >
+      &#10094;
+    </button>
+    <button 
+      type="button"
+      class="lightbox-next" 
+      aria-label="Next image"
+      tabindex="0"
+    >
+      &#10095;
+    </button>
+    
+    <div class="lightbox-thumbnails" role="tablist" aria-label="Image thumbnails">
+      {images.map((image, thumbIndex) => (
+        <img 
+          src={image.src} 
+          alt={`${image.alt} thumbnail`}
+          class={`lightbox-thumb ${thumbIndex === 0 ? 'lightbox-thumb-active' : ''}`}
+          role="tab"
+          aria-selected={thumbIndex === 0}
+          tabindex="0"
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ modalId }}>
+  import { initLightbox } from '../../scripts/lightbox';
+  
+  if (typeof window !== 'undefined') {
+    initLightbox(modalId);
+  }
+</script>
+
+<style>
+  .lightbox-modal {
+    display: none;
+    cursor: default;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .lightbox-modal[style*="block"] {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .lightbox-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 95%;
+    max-width: 1400px;
+    margin-top: 30px;
+  }
+
+  .lightbox-close {
+    color: white;
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    font-size: 40px;
+    font-weight: bold;
+    z-index: 10000;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-close:focus {
+    color: #b0afb0;
+  }
+
+  .lightbox-slide {
+    display: none;
+    animation: fadeInSlide 0.4s ease-in-out;
+  }
+
+  .lightbox-slide[style*="block"] {
+    display: block;
+  }
+
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .lightbox-image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .lightbox-image {
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+    max-height: calc(100vh - 180px);
+    display: block;
+    margin: 0 auto;
+  }
+
+  .lightbox-caption {
+    text-align: center;
+    background-color: transparent;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    cursor: pointer;
+    position: fixed;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    margin-top: -30px;
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 60px;
+    text-align: center;
+    transition: 0.3s ease;
+    border-radius: 50%;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    border: none;
+    outline: none;
+  }
+
+  .lightbox-prev:focus,
+  .lightbox-next:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  .lightbox-prev {
+    left: 20px;
+  }
+
+  .lightbox-next {
+    right: 20px;
+  }
+
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+  }
+
+  .lightbox-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-x: auto;
+    margin-top: 10px;
+  }
+
+  .lightbox-thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.2s;
+    border: 2px solid transparent;
+    border-radius: 8px;
+  }
+
+  .lightbox-thumb:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  .lightbox-thumb-active {
+    opacity: 1;
+    border-color: var(--gold);
+  }
+</style>
+
