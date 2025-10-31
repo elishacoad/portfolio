@@ -34,14 +34,16 @@ const modalId = `lightbox-${galleryId}`;
   <div class="lightbox-content">
     {images.map((image, index) => (
       <div 
-        class="lightbox-slide" 
-        style={`display: ${index === 0 ? 'block' : 'none'};`}
+        class="lightbox-slide pt-24"
+        style={`display: ${index === 0 ? 'flex' : 'none'};`}
         aria-hidden={index !== 0}
       >
+        <div class="flex flex-col items-center justify-center">
         <div class="lightbox-image-wrapper">
           <img src={image.src} alt={image.alt} class="lightbox-image" loading="lazy">
         </div>
         <div class="lightbox-caption">{image.caption || image.alt}</div>
+      </div>
       </div>
     ))}
     
@@ -77,13 +79,6 @@ const modalId = `lightbox-${galleryId}`;
   </div>
 </div>
 
-<script define:vars={{ modalId }}>
-  import { initLightbox } from '../../scripts/lightbox';
-  
-  if (typeof window !== 'undefined') {
-    initLightbox(modalId);
-  }
-</script>
 
 <style>
   .lightbox-modal {
@@ -100,10 +95,6 @@ const modalId = `lightbox-${galleryId}`;
     animation: fadeIn 0.3s ease-out;
   }
 
-  .lightbox-modal[style*="block"] {
-    display: block;
-  }
-
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -117,9 +108,13 @@ const modalId = `lightbox-${galleryId}`;
     position: relative;
     margin: auto;
     padding: 0;
+    padding-bottom: 140px;
     width: 95%;
     max-width: 1400px;
-    margin-top: 30px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .lightbox-close {
@@ -132,6 +127,8 @@ const modalId = `lightbox-${galleryId}`;
     z-index: 10000;
     cursor: pointer;
     transition: color 0.3s;
+    background-color: transparent;
+    border: none;
   }
 
   .lightbox-close:hover,
@@ -142,11 +139,12 @@ const modalId = `lightbox-${galleryId}`;
   .lightbox-slide {
     display: none;
     animation: fadeInSlide 0.4s ease-in-out;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .lightbox-slide[style*="block"] {
-    display: block;
-  }
 
   @keyframes fadeInSlide {
     from {
@@ -171,7 +169,7 @@ const modalId = `lightbox-${galleryId}`;
     height: auto;
     border-radius: 12px;
     object-fit: contain;
-    max-height: calc(100vh - 180px);
+    max-height: calc(100vh - 280px);
     display: block;
     margin: 0 auto;
   }
@@ -235,9 +233,15 @@ const modalId = `lightbox-${galleryId}`;
     justify-content: center;
     gap: 10px;
     padding: 15px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     overflow-x: auto;
-    margin-top: 10px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1400px;
+    z-index: 10001;
   }
 
   .lightbox-thumb {

@@ -5,6 +5,11 @@ export interface Props {
 
 const { currentPage } = Astro.props;
 
+const currentPath = Astro.url.pathname;
+const isIndex = currentPath === '/' || currentPath === '/index.html';
+const currentPageDetected = isIndex ? 'index' : currentPath.replace('/', '').replace('.html', '') || undefined;
+const activePage = currentPage || currentPageDetected;
+
 const navItems = [
   { href: '/', label: 'work', page: 'index' },
   { href: '/playground', label: 'playground', page: 'playground' },
@@ -15,13 +20,13 @@ const navItems = [
 <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="header-new w-nav">
   <div class="w-container">
     <div class="header-container">
-      <a data-w-id="617845d1-d8d2-5f23-6679-de7c9432da21" href="/" class={`logo mouse-hover-fx w-inline-block ${currentPage === 'index' ? 'w--current' : ''}`}>
+      <a data-w-id="617845d1-d8d2-5f23-6679-de7c9432da21" href="/" class={`logo mouse-hover-fx w-inline-block ${activePage === 'index' ? 'w--current' : ''}`}>
         <img src="/images/icons/Monogram-Final_Logo-80px.png" loading="lazy" width="29" alt="" class="img-logo">
         <div data-w-id="617845d1-d8d2-5f23-6679-de7c9432da23" data-is-ix2-target="1" class="lottie-logo" data-animation-type="lottie" data-src="/documents/Logo-OffWhite.json" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-default-duration="2.2022021125046733" data-duration="0"></div>
       </a>
       <nav role="navigation" class="nav-menu w-nav-menu">
         {navItems.map(item => (
-          <a href={item.href} class={`button mouse-hover-fx w-button ${currentPage === item.page ? 'w--current' : ''}`}>
+          <a href={item.href} class={`button mouse-hover-fx w-button ${activePage === item.page ? 'w--current' : ''}`}>
             {item.label}
           </a>
         ))}

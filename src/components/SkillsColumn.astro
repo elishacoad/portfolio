@@ -7,8 +7,8 @@ interface Props {
 const { title, skills } = Astro.props;
 ---
 
-<div class="mb-0 pl-0 pr-0 w-col w-col-4">
-  <div class="leading-8 font-semibold">{title}</div>
-  <div class="leading-8" set:html={skills} />
+<div class="skills-col w-col w-col-4">
+  <div class="skills title">{title}</div>
+  <div class="skills" set:html={skills} />
 </div>
 

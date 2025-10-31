@@ -12,7 +12,7 @@ const { category } = Astro.props;
 <div class="relative">
   <button 
     type="button"
-    class="gallery-trigger relative block border-0 bg-transparent p-0 rounded overflow-hidden transition-[box-shadow_transform] duration-200 cursor-none w-full hover:shadow-[0_3px_20px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 active:translate-y-0 mouse-hover-fx"
+    class="gallery-trigger relative block border-0 bg-transparent p-0 rounded overflow-hidden transition-[box-shadow_transform] duration-200 !cursor-none w-full hover:shadow-[0_3px_20px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5 active:translate-y-0 mouse-hover-fx"
     data-gallery-id={category.id}
     aria-label={`View ${category.title} gallery`}
   >

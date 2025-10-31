@@ -25,20 +25,21 @@ import GridSection from '../components/GridSection.astro';
           <p class="mt-5 mr-[58px] text-2xl font-light leading-[150%]">Hey there! I'm Elisha, a product designer by day and a tired designer by night. With a background in programming and branding, I design products for companies in the tech industry.<br></p>
         </div>
       </div>
-      <div class="w-layout-grid gap-x-[60px] gap-y-[140px] grid-cols-[.6fr_1fr] mt-[20vh] mb-[140px]">
-        <GridSection title="background">
+      <div class="w-layout-grid text-grid">
+        <h2 class="text-title">background</h2>
+        <div class="grid-container">
           <p>I started out programming games and building websites, which led to freelance work as a software developer and graphic designer. In college I combined my passion for the visual and the technical, graduating with a dual emphasis in interface and graphic design.<br><br>I now use my skills to create products that are enjoyable to use and built with user's needs first-and-foremost. Whatever it is I'm working on, I'm motivated by creating designs that empower and inspire others.</p>
-        </GridSection>
+        </div>
         
-        <GridSection title="skillset">
-          <div class="mb-0 w-row">
-            <SkillsColumn title="Product" skills="Visual Design<br>UX Design<br>Design Systems" />
-            <SkillsColumn title="Graphics" skills="Logo Design<br>Digital Illustration<br>Web Design" />
-            <SkillsColumn title="Hobbies" skills="Game Design<br>Board Games<br>Miniature Painting" />
-          </div>
-        </GridSection>
+        <h2 class="text-title">skillset</h2>
+        <div class="grid-container w-row">
+          <SkillsColumn title="Product" skills="Visual Design<br>UX Design<br>Design Systems" />
+          <SkillsColumn title="Graphics" skills="Logo Design<br>Digital Illustration<br>Web Design" />
+          <SkillsColumn title="Hobbies" skills="Game Design<br>Board Games<br>Miniature Painting" />
+        </div>
         
-        <GridSection title="connect">
+        <h2 class="text-title">connect</h2>
+        <div class="grid-container last">
           <p>
             <ContactLinks variant="inline" />
             Want to chat? Reach out anytime!
@@ -50,7 +51,7 @@ import GridSection from '../components/GridSection.astro';
               isExternal={true}
             />
           </div>
-        </GridSection>
+        </div>
       </div>
     </div>
   </div>
